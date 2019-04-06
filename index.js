@@ -1,3 +1,4 @@
+// declaring variables and packages required in app
 var inquirer = require('inquirer');
 var Word = require('./word.js');
 var randomWords = require('./list.js');
@@ -9,6 +10,7 @@ var FgCyan = "\x1b[36m";
 var FgGreen = "\x1b[32m";
 var FgMagenta = "\x1b[35m";
 
+//prompt to guess a letter
 var question = [{
   type: 'input',
   name: 'guessedLetter',
@@ -22,9 +24,9 @@ var question = [{
     }
   }
 }]
-// Need an array to store the guessed letters from the user
+
+// An array to store the guessed letters from the user
 var guessedLetters = [];
-debugger
 var word = randomWord();
 var guesses = 7;
 function guessLetter(){
@@ -50,7 +52,7 @@ function guessLetter(){
         console.log(FgCyan + 'YOU LOSE!' + FgWhite);
         console.log('The answer was: ' + word.stringWord);
         console.log('-----------------------------------');
-        playAgain()
+        playAgain();
       }else if(output.includes('_')){
         console.log('You have: ' + guesses + ' guesses remaining. \n');
         guessLetter();
@@ -62,16 +64,18 @@ function guessLetter(){
       }
     }})}
 
-console.log(FgGreen + "\nWelcome to CLI-Hangman!" + FgWhite);
+console.log(FgGreen + "\nWelcome to CLI-Word Guess!" + FgWhite);
 console.log(word.wordDisplay().join(' '));
 console.log('You have: ' + FgCyan + guesses + FgWhite + ' guesses remaining. \n');
 guessLetter();
 
-
+//Generating word to guess
 function randomWord(){
   var indexOfWord = Math.floor(Math.random() * randomWords.length);
   return new Word(randomWords[indexOfWord])
 }
+
+//Restarting the game
 function playAgain(){
   inquirer.prompt([{
     type: 'confirm',

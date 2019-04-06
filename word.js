@@ -1,4 +1,6 @@
 var Letter = require('./letter.js')
+
+
 function Word(word){
   var splitword = word.split('');
   var wordArray = [];
